@@ -24,15 +24,21 @@ requirements:
     - python ${{ python_min }}
     - hatchling
   run:
-    - python >=${{ python_min }}
+    - python
     - pytorch >=2.0.0
     - einops >=0.8.0
     - einx >=0.3.0
 
 tests:
-  - python:
-      imports:
-        - vector_quantize_pytorch
+  - script:
+      - pytest -vvv tests
+    requirements:
+      run:
+        - pytest
+        - python
+    files:
+      source:
+        - tests/
 
 about:
   license: MIT
