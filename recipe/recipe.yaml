@@ -21,7 +21,7 @@ build:
 requirements:
   host:
     - pip
-    - python ${{ python_min }}
+    - python
     - hatchling
   run:
     - python
@@ -36,9 +36,6 @@ tests:
       run:
         - pytest
         - python
-    files:
-      source:
-        - tests/
 
 about:
   license: MIT
@@ -49,8 +46,8 @@ about:
 
 extra:
   recipe-maintainers:
+    - iamthebot
+    - lucidrains
     - psortos
     - oblute
     - mxr-conda
-    - iamthebot
-    - lucidrains
