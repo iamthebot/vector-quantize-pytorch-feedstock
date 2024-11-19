@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: vector-quantize-pytorch
+  version: 1.20.9
+  python_min: 3.10.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/v/vector-quantize-pytorch/vector_quantize_pytorch-${{ version }}.tar.gz
+  sha256: 37effcbafe910c36d4f8691b243b9a3db182104fcab3191bf66d1741decda6ff
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}
+  run:
+    - python >=${{ python_min }}
+    - pytorch >=2.0.0
+    - einops >=0.8.0
+    - einx >=0.3.0
+
+tests:
+  - python:
+      imports:
+        - vector_quantize_pytorch
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Simple Vector Quantization, in Pytorch
+  homepage: https://github.com/lucidrains/vector-quantizer-pytorch
+  repository: https://github.com/lucidrains/vector-quantizer-pytorch
+
+extra:
+  recipe-maintainers:
+    - psortos
+    - oblute
+    - mxr-conda
+    - iamthebot
