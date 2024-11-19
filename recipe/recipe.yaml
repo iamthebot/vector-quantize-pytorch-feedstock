@@ -13,8 +13,10 @@ source:
 
 build:
   number: 0
-  noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
+  skip:
+    - win  # No pytorch builds exist for windows and it's a dep
+    - match(python, '<${{ python_min }}')  # upstream deps require python 3.10
 
 requirements:
   host:
@@ -45,3 +47,4 @@ extra:
     - oblute
     - mxr-conda
     - iamthebot
+    - lucidrains
